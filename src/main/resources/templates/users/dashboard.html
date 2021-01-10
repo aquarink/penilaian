@@ -1,0 +1,110 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Welcome</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.min.css}" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <center>
+                <h3 th:text="'Hi, '+${user_name_login}" />
+            </center>
+            <div th:switch="${user_flag}">
+                <div th:case="'no'">
+                    <form action="/submitnilai" method="POST" class="form-group">
+                        <table class="table table-responsive table-striped">
+                            <thead>
+                                <th>Nama</th>
+                                <th>Kepemimpinan</th>
+                                <th>Kerja Tim</th>
+                                <th>Kehadiran</th>
+                                <th>Kemampuan/Skill</th>
+                                <th>Kontribusi Untuk Tim</th>
+                            </thead>
+                            <!-- <tbody th:if="${!#lists.isEmpty(list_user)}"> -->
+                            <tbody>
+                                <tr th:each="usr, stat : ${list_user}">
+                                    <td th:text="${usr.getNameUser}"></td>
+                                    <td>
+                                        <input type="hidden" th:name="id[]" th:value="${usr.getId}" />
+                                        <select class="form-control" th:name="kepemimpinan[]" required>
+                                            <!-- <select class="form-control" th:name="kepemimpinan[__${stat.index}__]" required> -->
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" th:name="kerjatim[]" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" th:name="kehadiran[]" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" th:name="kemampuan[]" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control" th:name="kontribusi[]" required>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <small>
+                            <span><b>Perhatian, berikut keterangan untuk nilai:</b></span>
+                            <br><span>1. Buruk</span>
+                            <br><span>2. Kurang</span>
+                            <br><span>3. Cukup</span>
+                            <br><span>4. Baik</span>
+                            <br><span>5. Sangat Baik</span>
+                        </small>
+                        <br>
+                        <br>
+                        <button class="btn btn-success">Kirim Nilai</button>
+                        <a href="/keluar" class="btn btn-default">Keluar</a>
+                    </form>
+                </div>
+                <center th:case="'ya'">
+                    <h4>Kamu sudah memberikan penilaian, penilaian hanya bisa dilakukan ketika dibuka kembali</h4>
+                    <br>
+                    <a href="/keluar" class="btn btn-warning">Keluar</a>
+                </center>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
