@@ -11,14 +11,13 @@
 	<groupId>com.karyawan</groupId>
 	<artifactId>penlaian</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>penlaian</name>
 	<description>Penilaian Kinerja</description>
 	
 
 	<properties>
-		<java-version>1.8</java-version>
-		<!-- <java.version>11</java.version> -->
+		<java.version>11</java.version>
 		<!-- <tomcat.version>8.5.61</tomcat.version> -->
 	</properties>
 
